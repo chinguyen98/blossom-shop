@@ -3,9 +3,11 @@ const app = express();
 
 /* Import modules */
 const path = require('path');
-var expressLayouts = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
+const dotenv = require('dotenv');
 
 /* Config */
+dotenv.config('./.env');
 const PORT = process.env.PORT || 3000;
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
