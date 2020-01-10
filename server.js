@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 /* Config */
 dotenv.config('./.env');
 const PORT = process.env.PORT || 3000;
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.static('./public'));
 
 /* Set view engine */
 app.set('view engine', 'ejs');
