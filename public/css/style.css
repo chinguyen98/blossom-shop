@@ -8,13 +8,13 @@ html{
 nav{
     display: flex;
     flex-direction: row;
-    background-color: #D4D4D4;
+    background-color: #E5E5E5;
     align-items: center;
     justify-content: space-around;
 }
 
 nav ul{
-    width: 70%;
+    width: 60%;
     height: 3rem;
     display: flex;
     align-items: center;
@@ -33,6 +33,30 @@ nav ul li a{
 nav ul li a:hover{
     color: blue;
     text-decoration: none;
+}
+
+.nav__menu{
+    width: 15%;
+}
+
+.nav__menu:hover{
+    cursor: pointer;
+}
+
+.nav__icon{
+    width: 15%;
+}
+
+.nav__icon *{
+    margin: 0 0.3rem;
+}
+
+.nav__icon *:hover{
+    cursor: pointer;
+}
+
+.nav__icon span:hover{
+    color: blue;
 }
 
 .head-info{
