@@ -15,12 +15,14 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('views', './views');
-app.set('view options', { layout: '/layout/app.ejs' });
+//app.set('view options', { layout: '/layout/app.ejs' });
 
 /* Import Route */
 const indexRoute = require('./routes/home.route.js');
+const adminRoute = require('./routes/admin.route.js');
 
 /* Routers */
-app.get('/', indexRoute);
+app.use('/', indexRoute);
+app.use('/admins', adminRoute);
 
 app.listen(PORT, () => console.log(`The server is running at PORT ${PORT}!...`));
