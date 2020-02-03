@@ -15,7 +15,7 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.set('views', './views');
-//app.set('view options', { layout: '/layout/app.ejs' });
+app.set('layout', './layouts/app.layout.ejs')
 
 /* Import Route */
 const indexRoute = require('./routes/home.route.js');
