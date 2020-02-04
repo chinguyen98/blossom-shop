@@ -3,5 +3,9 @@ module.exports.renderAdminHomePage = function (req, res, next) {
 }
 
 module.exports.renderAdminLoginPage = function (req, res, next) {
-    res.render('admin/login', { 'title': 'Admin Login', layout: 'layouts/admin.layout.ejs' })
+    res.render('admin/login', { 'title': 'Admin Login', layout: 'layouts/admin.layout.ejs' });
+}
+
+module.exports.renderAdminRegisterPage = function (req, res, next) {
+    res.render('admin/register', { 'title': 'Admin Register', layout: 'layouts/admin.layout.ejs' });
 }

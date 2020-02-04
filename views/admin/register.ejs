@@ -1,0 +1,26 @@
+<%- contentFor('content') %>
+<div class="d-flex justify-content-center mt-5">
+    <div class="d-inline-block border p-5">
+        <h1 class="text-center text-uppercase text-primary">Admin Register Form</h1>
+        <form action="/admins/register" method="POST">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" placeholder="Enter your name!">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" placeholder="Enter your email!">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Create password!">
+            </div>
+            <div>
+                <label for="confirmPassword">Confirm password:</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password!">
+            </div>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Register">
+        </form>
+    </div>
+</div>
