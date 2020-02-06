@@ -5,6 +5,8 @@ const app = express();
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 
 /* Config */
 dotenv.config('./.env');
