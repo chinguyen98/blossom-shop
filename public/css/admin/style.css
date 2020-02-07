@@ -1,0 +1,25 @@
+html{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+#messages{
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#messages .msg-success{
+    display: inline-block;
+}
+
+#messages .msg-success li{
+    background-color: #70f801;
+    padding: 1rem;
+}
