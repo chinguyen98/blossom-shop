@@ -17,6 +17,7 @@ app.use(express.static('./public'));
 /* Setting */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(session({ cookie: { maxAge: null }, secret: 'secret', name: 'session', resave: false, saveUninitialized: false }));
 
 app.use(flash());
