@@ -8,4 +8,6 @@ route.get('/login', adminController.renderAdminLoginPage);
 
 route.get('/register', adminController.renderAdminRegisterPage);
 
+route.post('/register', adminController.registerAdmin);
+
 module.exports = route;

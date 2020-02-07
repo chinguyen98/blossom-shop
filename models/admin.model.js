@@ -15,9 +15,10 @@ db.once('open', function () {
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    password: String
+    password: String,
+    type: Number
 });
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('admins', userSchema);
 
 module.exports = User;

@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt');
+
+const Admin = require('../models/admin.model');
+
 module.exports.renderAdminHomePage = function (req, res, next) {
     res.render('admin/index', { 'title': 'Admin Page', layout: 'layouts/admin.layout.ejs' });
 }
@@ -8,4 +12,29 @@ module.exports.renderAdminLoginPage = function (req, res, next) {
 
 module.exports.renderAdminRegisterPage = function (req, res, next) {
     res.render('admin/register', { 'title': 'Admin Register', layout: 'layouts/admin.layout.ejs' });
+}
+
+module.exports.registerAdmin = function (req, res, next) {
+    const name = req.body.name;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    Admin.findOne({ email: email }, (err, user) => {
+        if (err) throw err;
+        if (user) {
+            req.flash('msg-valid-err', 'Email has been taken!');
+            res.location('/admins/register');
+            res.redirect('/admins/register');
+        } else {
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(password, salt, (err, hassPassword) => {
+                    let newAdmin = new Admin({ name: name, email: email, password: hassPassword, type: 0 });
+                    newAdmin.save().then((admin) => console.log(admin));
+                    req.flash('msg-success', 'Register successfully!');
+                    res.location('/admins/login');
+                    res.redirect('/admins/login');
+                });
+            });
+        }
+    });
 }

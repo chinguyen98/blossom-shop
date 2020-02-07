@@ -7,11 +7,23 @@ const expressLayouts = require('express-ejs-layouts');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const session = require('express-session');
 
 /* Config */
 dotenv.config('./.env');
 const PORT = process.env.PORT || 3000;
 app.use(express.static('./public'));
+
+/* Setting */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({ cookie: { maxAge: null }, secret: 'secret', name: 'session', resave: false, saveUninitialized: false }));
+
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.messages = require('express-messages')(req, res)();
+    next();
+});
 
 /* Set view engine */
 app.set('view engine', 'ejs');
