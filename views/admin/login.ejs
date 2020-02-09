@@ -1,9 +1,11 @@
 <%- contentFor('content') %>
-<% if (messages) { %>
-<div>
-    <%- messages %>
+
+<% if (msg_success != '') { %>
+<div class="msg_success">
+    <h2><%- msg_success %></h2>
 </div>
 <% } %>
+
 <div class="d-flex justify-content-center mt-5">
     <div class="d-inline-block border p-5">
         <h1 class="text-center text-uppercase text-primary">Login</h1>

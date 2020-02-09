@@ -13,9 +13,7 @@ module.exports.renderAdminRegisterPage = function (req, res, next) {
 }
 
 module.exports.registerAdmin = function (req, res, next) {
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
+    const { name, email, password } = req.body;
 
     Admin.findOne({ email: email }, (err, user) => {
         if (err) throw err;

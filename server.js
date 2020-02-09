@@ -11,13 +11,14 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 
 /* Config */
-dotenv.config('./.env');
-const PORT = process.env.PORT || 3000;
-const sqlStringConnect = process.env.SQLSTRINGCONNECT;
-app.use(express.static('./public'));
+dotenv.config('../.env');
+const mongoDBUri = require('./config/keys').mongoDBUri;
+const PORT = require('./config/keys').PORT;
 
 /* Setting */
-mongoose.connect(sqlStringConnect, { useNewUrlParser: true, useUnifiedTopology: true });
+app.use(express.static('./public'));
+
+mongoose.connect(mongoDBUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -32,7 +33,8 @@ app.use(session({ cookie: { maxAge: null }, secret: 'secret', name: 'session', r
 
 app.use(flash());
 app.use((req, res, next) => {
-    res.locals.messages = require('express-messages')(req, res)();
+    res.locals.msg_success = req.flash('msg-success');
+    res.locals.msg_error = req.flash('msg-error');
     next();
 });
 

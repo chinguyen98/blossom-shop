@@ -4,22 +4,14 @@ html{
     margin: 0;
 }
 
-li{
-    list-style-type: none;
-}
-
-#messages{
-    font-size: 1.5rem;
+.msg_success{
     color: white;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     margin-top: 1rem;
 }
 
-#messages .msg-success{
-    display: inline-block;
-}
-
-#messages .msg-success li{
-    background-color: #70f801;
+.msg_success *{
+    background-color: rgb(17, 90, 15);
     padding: 1rem;
 }
