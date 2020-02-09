@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
 
 dotenv.config('../.env');
 const sqlStringConnect = process.env.SQLSTRINGCONNECT;
@@ -12,13 +13,21 @@ db.once('open', function () {
     console.log('Connect database successfully!');
 });
 
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    type: Number
+    type: { type: Number, default: 0 }
 });
 
-const User = mongoose.model('admins', userSchema);
+adminSchema.methods.encryptPassword = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+}
+
+adminSchema.methods.validPassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+}
+
+const User = mongoose.model('admins', adminSchema);
 
 module.exports = User;

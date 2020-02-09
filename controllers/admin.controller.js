@@ -26,15 +26,14 @@ module.exports.registerAdmin = function (req, res, next) {
             res.location('/admins/register');
             res.redirect('/admins/register');
         } else {
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(password, salt, (err, hassPassword) => {
-                    let newAdmin = new Admin({ name: name, email: email, password: hassPassword, type: 0 });
-                    newAdmin.save().then((admin) => console.log(admin));
-                    req.flash('msg-success', 'Register successfully!');
-                    res.location('/admins/login');
-                    res.redirect('/admins/login');
-                });
-            });
+            let newAdmin = new Admin();
+            newAdmin.name = name;
+            newAdmin.email = email;
+            newAdmin.password = newAdmin.encryptPassword(password);
+            newAdmin.save().then((admin) => console.log(admin));
+            req.flash('msg-success', 'Register successfully!');
+            res.location('/admins/login');
+            res.redirect('/admins/login');
         }
     });
 }
