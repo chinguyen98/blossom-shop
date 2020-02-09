@@ -1,2 +1,11 @@
 <%- contentFor('content') %>
-<h1>Hello This is Admin Page!</h1>
+
+<% if (success != '') { %>
+<div class="msg_success">
+    <h2><%- success %></h2>
+</div>
+<% } %>
+
+<div>
+    <h1>Hello This is Admin Page!</h1>
+</div>

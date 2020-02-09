@@ -5,6 +5,7 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
@@ -29,17 +30,25 @@ db.once('open', function () {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(cookieParser());
 app.use(session({ cookie: { maxAge: null }, secret: 'secret', name: 'session', resave: false, saveUninitialized: false }));
 
 app.use(flash());
 app.use((req, res, next) => {
     res.locals.msg_success = req.flash('msg-success');
     res.locals.msg_error = req.flash('msg-error');
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.all('*', (req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
 
 /* Set view engine (EJS) */
 app.set('view engine', 'ejs');

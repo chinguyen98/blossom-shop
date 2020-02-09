@@ -33,3 +33,7 @@ module.exports.registerAdmin = function (req, res, next) {
         }
     });
 }
+
+module.exports.loginAdmin = function (req, res, next) {
+
+}
