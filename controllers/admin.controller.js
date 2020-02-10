@@ -1,4 +1,5 @@
 const Admin = require('../models/admin.model');
+const Category = require('../models/category.model');
 
 module.exports.renderAdminHomePage = function (req, res, next) {
     res.render('admin/index', { 'title': 'Admin Page', layout: 'layouts/admin.layout.ejs' });
@@ -40,4 +41,13 @@ module.exports.registerAdmin = function (req, res, next) {
             res.redirect('/admins/login');
         }
     });
+}
+module.exports.addNewCategory = function (req, res, next) {
+    const name = req.body.name;
+    let category = new Category();
+    category.name = name;
+    category.save();
+    req.flash('msg-success', `Add "${name}" successfully!`);
+    res.location('/admins/manage/categories');
+    res.redirect('/admins/manage/categories');
 }

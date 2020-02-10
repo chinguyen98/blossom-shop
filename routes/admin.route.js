@@ -18,4 +18,6 @@ route.post('/register', adminController.registerAdmin);
 
 route.post('/login', adminAuth.authentication);
 
+route.post('/manage/categories/add', adminController.addNewCategory);
+
 module.exports = route;

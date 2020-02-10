@@ -1,5 +1,22 @@
 <%- contentFor('content') %>
 
-<div>
-    
+<% if (msg_success != '') { %>
+<div class="msg_success">
+    <h2><%- msg_success %></h2>
+</div>
+<% } %>
+
+<div class="container mt-5">
+    <h1 class="text-center">Blossom category management</h1>
+    <div>
+        <form class="d-flex" method="POST" action="/admins/manage/categories/add">
+            <label for="nameforAdd">Add new category: </label>
+            <input type="text" name="name" id="nameforAdd">
+            <input class="btn btn-primary" type="submit" value="Add new category">
+        </form>
+    </div>
+    <br>
+    <div>
+        
+    </div>
 </div>
