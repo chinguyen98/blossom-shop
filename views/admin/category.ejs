@@ -7,6 +7,7 @@
 <% } %>
 
 <div class="container mt-5">
+    <a class="btn btn-success" href="/admins">Back to Admin Page</a>
     <h1 class="text-center">Blossom category management</h1>
     <div>
         <form class="d-flex" method="POST" action="/admins/manage/categories/add">
@@ -16,7 +17,14 @@
         </form>
     </div>
     <br>
-    <div>
-        
+    <div class="d-flex flex-column border p-3">
+        <h1>List Category: <%- categories.length %> is found</h1>
+        <% categories.forEach((category)=>{ %>
+        <form class="d-flex" action="/admins/manage/categories/editanddelete/<%- category.id %>" method="POST">
+            <input type="text" name="name" value="<%- category.name %>">
+            <input name="editBtn" class="btn btn-primary" type="submit" value="Edit">
+            <input name="deleteBtn" class="btn btn-danger" type="submit" value="Delete">
+        </form>
+        <% }) %>
     </div>
 </div>

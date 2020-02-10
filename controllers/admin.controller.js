@@ -18,7 +18,15 @@ module.exports.renderAdminManageBlossomsPage = function (req, res, next) {
 }
 
 module.exports.renderAdminManageCategoriesPage = function (req, res, next) {
-    res.render('admin/category', { 'title': 'Category Management', layout: 'layouts/admin.layout.ejs' });
+    Category.find({}, (err, categories) => {
+        if (err) throw err;
+        categories = categories.sort(function (a, b) {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0;
+        });
+        res.render('admin/category', { 'title': 'Category Management', 'categories': categories, layout: 'layouts/admin.layout.ejs' });
+    });
 }
 
 module.exports.registerAdmin = function (req, res, next) {
@@ -50,4 +58,26 @@ module.exports.addNewCategory = function (req, res, next) {
     req.flash('msg-success', `Add "${name}" successfully!`);
     res.location('/admins/manage/categories');
     res.redirect('/admins/manage/categories');
+}
+
+module.exports.editAndDeleteCategory = function (req, res, next) {
+    const name = req.body.name;
+    if (req.body.editBtn != undefined) {
+        Category.findById(req.params.id, (err, category) => {
+            if (err) throw err;
+            category.name = name;
+            category.save();
+            req.flash('msg-success', `Edit "${name}" successfully!`);
+            res.location('/admins/manage/categories');
+            res.redirect('/admins/manage/categories');
+        })
+    } else {
+        Category.findByIdAndDelete(req.params.id, (err) => {
+            if (err) throw err;
+            req.flash('msg-success', `Delete "${name}" successfully!`);
+            res.location('/admins/manage/categories');
+            res.redirect('/admins/manage/categories');
+        })
+    }
+
 }

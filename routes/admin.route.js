@@ -20,4 +20,6 @@ route.post('/login', adminAuth.authentication);
 
 route.post('/manage/categories/add', adminController.addNewCategory);
 
+route.post('/manage/categories/editanddelete/:id', adminController.editAndDeleteCategory);
+
 module.exports = route;
