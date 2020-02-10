@@ -12,6 +12,14 @@ module.exports.renderAdminRegisterPage = function (req, res, next) {
     res.render('admin/register', { 'title': 'Admin Register', layout: 'layouts/admin.layout.ejs' });
 }
 
+module.exports.renderAdminManageBlossomsPage = function (req, res, next) {
+    res.render('admin/blossom', { 'title': 'Blossom Management', layout: 'layouts/admin.layout.ejs' });
+}
+
+module.exports.renderAdminManageCategoriesPage = function (req, res, next) {
+    res.render('admin/category', { 'title': 'Category Management', layout: 'layouts/admin.layout.ejs' });
+}
+
 module.exports.registerAdmin = function (req, res, next) {
     const { name, email, password } = req.body;
 
@@ -32,8 +40,4 @@ module.exports.registerAdmin = function (req, res, next) {
             res.redirect('/admins/login');
         }
     });
-}
-
-module.exports.loginAdmin = function (req, res, next) {
-
 }

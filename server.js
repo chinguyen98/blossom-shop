@@ -46,7 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.all('*', (req, res, next) => {
-    res.locals.user = req.user || null;
+    res.locals.admin = req.user || null;
     next();
 });
 

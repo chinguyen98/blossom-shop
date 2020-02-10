@@ -6,6 +6,13 @@
 </div>
 <% } %>
 
-<div>
-    <h1>Hello This is Admin Page!</h1>
+<div class="container mt-5">
+    <h1 class="text-center">Hello <%- admin.name %>!</h1>
+    <div>
+        <h3>What do u want?</h3>
+        <div>
+            <a class="btn btn-primary" href="/admins/manage/blossoms">Blossom Management</a>
+            <a class="btn btn-success" href="/admins/manage/categories">Category Management</a>
+        </div>
+    </div>
 </div>

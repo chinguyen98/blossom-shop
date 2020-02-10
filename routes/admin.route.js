@@ -10,6 +10,10 @@ route.get('/login', adminAuth.redirectIfAuthenticated, adminController.renderAdm
 
 route.get('/register', adminAuth.redirectIfAuthenticated, adminController.renderAdminRegisterPage);
 
+route.get('/manage/blossoms', adminController.renderAdminManageBlossomsPage);
+
+route.get('/manage/categories', adminController.renderAdminManageCategoriesPage);
+
 route.post('/register', adminController.registerAdmin);
 
 route.post('/login', adminAuth.authentication);
