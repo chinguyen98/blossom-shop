@@ -22,4 +22,6 @@ route.post('/manage/categories/add', adminController.addNewCategory);
 
 route.post('/manage/categories/editanddelete/:id', adminController.editAndDeleteCategory);
 
+route.post('/manage/blossoms/add', adminController.addNewFlower);
+
 module.exports = route;

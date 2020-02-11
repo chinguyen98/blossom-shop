@@ -1,5 +1,6 @@
 const Admin = require('../models/admin.model');
 const Category = require('../models/category.model');
+const Flower = require('../models/flower.model');
 
 module.exports.renderAdminHomePage = function (req, res, next) {
     res.render('admin/index', { 'title': 'Admin Page', layout: 'layouts/admin.layout.ejs' });
@@ -79,5 +80,9 @@ module.exports.editAndDeleteCategory = function (req, res, next) {
             res.redirect('/admins/manage/categories');
         })
     }
+}
 
+module.exports.addNewFlower = function (req, res, next) {
+    const { name, price, image } = req.body;
+    res.send(image);
 }
