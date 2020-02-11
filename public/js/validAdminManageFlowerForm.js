@@ -3,7 +3,6 @@ const nameForAddInput = document.querySelector('#nameForAdd');
 const pictureForAddInput = document.querySelector('#pictureForAdd');
 const forAddErrors = Array.from(document.querySelectorAll('[data-err]'));
 
-
 function validAdminAddFlowerForm(e) {
     const errors = [];
     forAddErrors.forEach(err => err.innerHTML = '');

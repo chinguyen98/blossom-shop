@@ -15,7 +15,15 @@ module.exports.renderAdminRegisterPage = function (req, res, next) {
 }
 
 module.exports.renderAdminManageBlossomsPage = function (req, res, next) {
-    res.render('admin/blossom', { 'title': 'Blossom Management', layout: 'layouts/admin.layout.ejs' });
+    Category.find({}, (err, categories) => {
+        if (err) throw err;
+        categories = categories.sort(function (a, b) {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0;
+        });
+        res.render('admin/blossom', { 'title': 'Blossom Management', 'categories': categories, layout: 'layouts/admin.layout.ejs' });
+    });
 }
 
 module.exports.renderAdminManageCategoriesPage = function (req, res, next) {
@@ -83,6 +91,16 @@ module.exports.editAndDeleteCategory = function (req, res, next) {
 }
 
 module.exports.addNewFlower = function (req, res, next) {
-    const { name, price, image } = req.body;
-    res.send(image);
+    const { name, price, categoryId } = req.body;
+    const image = req.file.filename;
+    const newFlower = new Flower();
+    newFlower.name = name;
+    newFlower.price = price;
+    newFlower.image = image;
+    newFlower.categoryId = categoryId;
+
+    newFlower.save();
+    req.flash('msg-success', `Add "${name}" successfully!`);
+    res.location('/admins/manage/blossoms');
+    res.redirect('/admins/manage/blossoms');
 }

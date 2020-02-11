@@ -1,5 +1,6 @@
 const route = require('express').Router();
-const passport = require('passport');
+const multer = require('multer');
+const upload = multer({ dest: './public/images/flowers/' });
 
 const adminController = require('../controllers/admin.controller');
 const adminAuth = require('../middlewares/adminAuth.middleware');
@@ -22,6 +23,6 @@ route.post('/manage/categories/add', adminController.addNewCategory);
 
 route.post('/manage/categories/editanddelete/:id', adminController.editAndDeleteCategory);
 
-route.post('/manage/blossoms/add', adminController.addNewFlower);
+route.post('/manage/blossoms/add', upload.single('image'), adminController.addNewFlower);
 
 module.exports = route;

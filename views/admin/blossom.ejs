@@ -11,14 +11,21 @@
     <h1 class="text-center">Blossom management</h1>
     <div class="border mt-4 p-3">
         <h1 class="text-right">Add new Flower: </h1>
-        <form action="/admins/manage/blossoms/add" method="post" onsubmit="return validAdminAddFlowerForm()">
+        <form action="/admins/manage/blossoms/add" method="post" enctype="multipart/form-data"
+            onsubmit="return validAdminAddFlowerForm()">
             <label for="nameForAdd">Name</label><span class="text-danger" data-err="nameForAdd"></span>
             <input type="text" name="name" id="nameForAdd">
             <label for="priceForAdd">Price</label><span class="text-danger" data-err="priceForAdd"></span>
             <input type="text" name="price" id="priceForAdd">
             <label for="pictureForAdd">Picture</label><span class="text-danger" data-err="pictureForAdd"></span>
-            <input type="file" name="image" id="pictureForAdd">
-            <input class="btn btn-primary" type="submit" value="Add new flower">
+            <input type="file" name="image" id="pictureForAdd" required>
+            <label for="categoryForAdd">Category</label>
+            <select name="categoryId" id="categoryForAdd">
+                <% categories.forEach((category)=>{ %>
+                    <option value="<%- category.id %>"><%- category.name %></option>
+                <% }) %>
+            </select>
+            <input class="btn btn-primary mt-3" type="submit" value="Add new flower">
         </form>
     </div>
     <br>
