@@ -7,7 +7,10 @@
 <% } %>
 
 <div class="container mt-5">
-    <a class="btn btn-success" href="/admins">Back to Admin Page</a>
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-success" href="/admins">Back to Admin Page</a>
+        <a class="btn btn-danger text-right" href="/admins/logout">Log out</a>
+    </div>
     <h1 class="text-center">Blossom management</h1>
     <div class="border mt-4 p-3">
         <h1 class="text-right">Add new Flower: </h1>
@@ -22,11 +25,36 @@
             <label for="categoryForAdd">Category</label>
             <select name="categoryId" id="categoryForAdd">
                 <% categories.forEach((category)=>{ %>
-                    <option value="<%- category.id %>"><%- category.name %></option>
+                <option value="<%- category.id %>"><%- category.name %></option>
                 <% }) %>
             </select>
             <input class="btn btn-primary mt-3" type="submit" value="Add new flower">
         </form>
+    </div>
+    <div class="border mt-5 p-3">
+        <h1 class="text-right">List flower</h1>
+        <div>
+            <% flowers.forEach(flower=>{ %>
+            <form class="d-flex align-items-center" method="POST"
+                action="/admins/manage/blossoms/editanddelete/<%- flower.id %>">
+                <img src="/images/flowers/<%- flower.image %>" class="flowerImage" alt="">
+                <input type="hidden" name="picture" value="<%- flower.image %>">
+                <input type="text" name="name" value="<%- flower.name %>" required>
+                <input type="text" name="price" value="<%- flower.price %>" required>
+                <select name="categoryId" id="categoryForAdd">
+                    <% categories.forEach((category)=>{ %>
+                    <% if(category.id==flower.categoryId){ %>
+                    <option value="<%- category.id %>" selected><%- category.name %></option>
+                    <% }else{ %>
+                    <option value="<%- category.id %>"><%- category.name %></option>
+                    <% } %>
+                    <% }) %>
+                </select>
+                <input class="btn btn-primary" type="submit" value="Edit" name="editBtn">
+                <input class="btn btn-danger" type="submit" value="Delete" name="deleteBtn">
+            </form>
+            <% }) %>
+        </div>
     </div>
     <br>
 </div>

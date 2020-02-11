@@ -7,7 +7,10 @@
 <% } %>
 
 <div class="container mt-5">
-    <a class="btn btn-success" href="/admins">Back to Admin Page</a>
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-success" href="/admins">Back to Admin Page</a>
+        <a class="btn btn-danger text-right" href="/admins/logout">Log out</a>
+    </div>
     <h1 class="text-center">Blossom category management</h1>
     <div>
         <form class="d-flex" method="POST" action="/admins/manage/categories/add">

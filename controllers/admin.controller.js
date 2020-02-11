@@ -2,6 +2,8 @@ const Admin = require('../models/admin.model');
 const Category = require('../models/category.model');
 const Flower = require('../models/flower.model');
 
+const fs = require('fs');
+
 module.exports.renderAdminHomePage = function (req, res, next) {
     res.render('admin/index', { 'title': 'Admin Page', layout: 'layouts/admin.layout.ejs' });
 }
@@ -22,7 +24,10 @@ module.exports.renderAdminManageBlossomsPage = function (req, res, next) {
             if (a.name > b.name) { return 1; }
             return 0;
         });
-        res.render('admin/blossom', { 'title': 'Blossom Management', 'categories': categories, layout: 'layouts/admin.layout.ejs' });
+        Flower.find({}, (err, flowers) => {
+            if (err) throw err;
+            res.render('admin/blossom', { 'title': 'Blossom Management', 'flowers': flowers, 'categories': categories, layout: 'layouts/admin.layout.ejs' });
+        });
     });
 }
 
@@ -103,4 +108,37 @@ module.exports.addNewFlower = function (req, res, next) {
     req.flash('msg-success', `Add "${name}" successfully!`);
     res.location('/admins/manage/blossoms');
     res.redirect('/admins/manage/blossoms');
+}
+
+module.exports.editAndDeleteFlower = function (req, res, next) {
+    const flowerId = req.params.id;
+    const { name, price, categoryId } = req.body;
+
+    if (req.body.editBtn) {
+        Flower.findById(flowerId, (err, flower) => {
+            if (err) throw err;
+            flower.name = name;
+            flower.price = price;
+            flower.categoryId = categoryId;
+            flower.save();
+            req.flash('msg-success', `Edit "${name}" successfully!`);
+            res.location('/admins/manage/blossoms');
+            res.redirect('/admins/manage/blossoms');
+        })
+    } else {
+        Flower.findByIdAndDelete(flowerId, err => {
+            if (err) throw err;
+            fs.unlinkSync(`./public/images/flowers/${req.body.picture}`, err => {
+                if (err) throw err;
+            })
+            req.flash('msg-success', `Delete "${name}" successfully!`);
+            res.location('/admins/manage/blossoms');
+            res.redirect('/admins/manage/blossoms');
+        })
+    }
+}
+
+module.exports.logout = function (req, res, next) {
+    req.logout();
+    res.redirect('/admins');
 }

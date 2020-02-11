@@ -9,11 +9,13 @@ route.get('/', adminAuth.ensureAuthenticated, adminController.renderAdminHomePag
 
 route.get('/login', adminAuth.redirectIfAuthenticated, adminController.renderAdminLoginPage);
 
-route.get('/register', adminAuth.redirectIfAuthenticated, adminController.renderAdminRegisterPage);
+route.get('/register', adminAuth.ensureAuthenticated, adminController.renderAdminRegisterPage);
 
-route.get('/manage/blossoms', adminController.renderAdminManageBlossomsPage);
+route.get('/manage/blossoms', adminAuth.ensureAuthenticated, adminController.renderAdminManageBlossomsPage);
 
-route.get('/manage/categories', adminController.renderAdminManageCategoriesPage);
+route.get('/manage/categories', adminAuth.ensureAuthenticated, adminController.renderAdminManageCategoriesPage);
+
+route.get('/logout', adminController.logout);
 
 route.post('/register', adminController.registerAdmin);
 
@@ -24,5 +26,7 @@ route.post('/manage/categories/add', adminController.addNewCategory);
 route.post('/manage/categories/editanddelete/:id', adminController.editAndDeleteCategory);
 
 route.post('/manage/blossoms/add', upload.single('image'), adminController.addNewFlower);
+
+route.post('/manage/blossoms/editanddelete/:id', adminController.editAndDeleteFlower);
 
 module.exports = route;
