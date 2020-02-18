@@ -59,9 +59,11 @@ app.set('layout', './layouts/app.layout.ejs');
 /* Import Route */
 const indexRoute = require('./routes/home.route.js');
 const adminRoute = require('./routes/admin.route.js');
+const userRoute = require('./routes/user.route.js');
 
 /* Routers */
 app.use('/', indexRoute);
+app.use('/users', userRoute);
 app.use('/admins', adminRoute);
 
 app.listen(PORT, () => console.log(`The server is running at PORT ${PORT}!...`));
