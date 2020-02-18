@@ -1,0 +1,19 @@
+form *{
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+form input{
+    width: 30rem;
+    height: 2rem;
+}
+
+form input:focus{
+    border: 2px solid blue;
+    background-color: rgb(204, 204, 250);
+    transition: 0.5s all;
+}
+
+label{
+    display: inline;
+}

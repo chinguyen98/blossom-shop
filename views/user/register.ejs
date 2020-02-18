@@ -1,0 +1,43 @@
+<%- contentFor('content') %>
+<%- include('../inc/navbar') %>
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="d-inline-block border p-5">
+        <h1 class="text-center text-uppercase text-primary">Register</h1>
+        <form action="/admins/register" method="POST" onsubmit="return validForm()">
+            <div>
+                <label for="name">Name:</label> <span class="text-danger" data-err="name"></span>
+                <input data-err-bg="name" type="text" name="name" id="name" placeholder="Enter your name!">
+            </div>
+            <div>
+                <label for="email">Email:</label><span class="text-danger" data-err="email"></span>
+                <input data-err-bg="email" type="text" name="email" id="email" placeholder="Enter your email!">
+            </div>
+            <div>
+                <label for="phone">Phone:</label> <span class="text-danger" data-err="phone"></span>
+                <input data-err-bg="phone" type="text" name="phone" id="phone" placeholder="Enter your phone number!">
+            </div>
+            <div>
+                <label for="address">Address:</label> <span class="text-danger" data-err="address"></span>
+                <input data-err-bg="address" type="text" name="address" id="address" placeholder="Enter your address!">
+            </div>
+            <div>
+                <label for="password">Password:</label><span class="text-danger" data-err="password"></span>
+                <input data-err-bg="password" type="password" name="password" id="password"
+                    placeholder="Create password!">
+            </div>
+            <div>
+                <label for="confirmpassword">Confirm password:</label><span class="text-danger"
+                    data-err="confirmpassword"></span>
+                <input data-err-bg="confirmpassword" type="password" name="confirmpassword" id="confirmpassword"
+                    placeholder="Confirm password!">
+            </div>
+            <br>
+            <input class="btn btn-primary" type="submit" value="Register">
+            
+        </form>
+        <br>
+        <p>Already have account? <a href="/users/login">Login now!</a></p>
+    </div>
+</div>
+<script src="/js/validUserRegisterForm.js"></script>
