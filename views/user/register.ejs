@@ -1,10 +1,16 @@
 <%- contentFor('content') %>
 <%- include('../inc/navbar') %>
 
+<% if (msg_valid_error != '') { %>
+<div class="msg_error">
+    <h2><%- msg_valid_error %></h2>
+</div>
+<% } %>
+
 <div class="d-flex justify-content-center mt-5">
     <div class="d-inline-block border p-5">
         <h1 class="text-center text-uppercase text-primary">Register</h1>
-        <form action="/admins/register" method="POST" onsubmit="return validForm()">
+        <form action="/users/register" method="POST" onsubmit="return validForm()">
             <div>
                 <label for="name">Name:</label> <span class="text-danger" data-err="name"></span>
                 <input data-err-bg="name" type="text" name="name" id="name" placeholder="Enter your name!">
@@ -34,7 +40,7 @@
             </div>
             <br>
             <input class="btn btn-primary" type="submit" value="Register">
-            
+
         </form>
         <br>
         <p>Already have account? <a href="/users/login">Login now!</a></p>

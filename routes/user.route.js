@@ -6,4 +6,6 @@ route.get('/login', userController.renderUserLoginPage);
 
 route.get('/register', userController.renderUserRegisterPage);
 
+route.post('/register', userController.registerUser);
+
 module.exports = route;
