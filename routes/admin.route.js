@@ -3,23 +3,23 @@ const multer = require('multer');
 const upload = multer({ dest: './public/images/flowers/' });
 
 const adminController = require('../controllers/admin.controller');
-const adminAuth = require('../middlewares/adminAuth.middleware');
+const auth = require('../middlewares/auth.middleware');
 
-route.get('/', adminAuth.ensureAuthenticated, adminController.renderAdminHomePage);
+route.get('/', auth.ensureAdminAuthenticated, adminController.renderAdminHomePage);
 
-route.get('/login', adminAuth.redirectIfAuthenticated, adminController.renderAdminLoginPage);
+route.get('/login', auth.redirectIfAdminAuthenticated, adminController.renderAdminLoginPage);
 
-route.get('/register', adminAuth.ensureAuthenticated, adminController.renderAdminRegisterPage);
+route.get('/register', auth.ensureAdminAuthenticated, adminController.renderAdminRegisterPage);
 
-route.get('/manage/blossoms', adminAuth.ensureAuthenticated, adminController.renderAdminManageBlossomsPage);
+route.get('/manage/blossoms', auth.ensureAdminAuthenticated, adminController.renderAdminManageBlossomsPage);
 
-route.get('/manage/categories', adminAuth.ensureAuthenticated, adminController.renderAdminManageCategoriesPage);
+route.get('/manage/categories', auth.ensureAdminAuthenticated, adminController.renderAdminManageCategoriesPage);
 
 route.get('/logout', adminController.logout);
 
 route.post('/register', adminController.registerAdmin);
 
-route.post('/login', adminAuth.authentication);
+route.post('/login', auth.adminAuthentication);
 
 route.post('/manage/categories/add', adminController.addNewCategory);
 

@@ -1,0 +1,19 @@
+<%- contentFor('content') %>
+
+<%- include('../inc/navbar') %>
+
+<% if (msg_success != '') { %>
+<div class="msg_success">
+    <h2><%- msg_success %></h2>
+</div>
+<% } %>
+
+<% if (error != '') { %>
+<div class="msg_error">
+    <h2><%- error %></h2>
+</div>
+<% } %>
+
+<div>
+    <h1>Hello!</h1>
+</div>

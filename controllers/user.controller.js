@@ -1,5 +1,9 @@
 const User = require('../models/user.model');
 
+module.exports.renderUserPage = function (req, res, next) {
+    res.render('user/index', { 'title': 'Hello' });
+}
+
 module.exports.renderUserLoginPage = function (req, res, next) {
     res.render('user/login', { 'title': 'Login' });
 }
