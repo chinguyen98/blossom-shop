@@ -37,6 +37,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.msg_success = req.flash('msg-success');
     res.locals.msg_error = req.flash('msg-error');
+    res.locals.msg_notify = req.flash('msg-notify');
     res.locals.error = req.flash('error');
     res.locals.success = req.flash('success');
     res.locals.msg_valid_error = req.flash('msg-valid-err');

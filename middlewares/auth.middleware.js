@@ -15,7 +15,7 @@ module.exports.adminAuthentication = passport.authenticate('admin', {
 });
 
 module.exports.userAuthentication = passport.authenticate('user', {
-    successRedirect: '/users',
+    successRedirect: '/carts',
     failureRedirect: '/users/login',
     failureFlash: 'Incorrect email or password!',
     successFlash: 'Login successfully!',
@@ -93,6 +93,10 @@ module.exports.ensureUserAuthenticated = function (req, res, next) {
     if (req.isAuthenticated() && req.user.type == USER) {
         return next();
     }
+    if (req.route.path == '/carts') {
+        req.flash('msg-notify', 'Please login first!');
+    }
+    res.location('/users/login');
     res.redirect('/users/login');
 }
 

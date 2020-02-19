@@ -80,21 +80,27 @@ nav ul li a:hover{
     justify-content: space-around;
 }
 
-.msg_success, .msg_error{
+.msg_success, .msg_error, .msg_notify{
     color: white;
     display: flex;
     justify-content: center;
     margin-top: 1rem;
 }
 
+.msg_success, .msg_error, .msg_notify *{
+    padding: 1rem;
+}
+
 .msg_success *{
     background-color: rgb(17, 90, 15);
-    padding: 1rem;
 }
 
 .msg_error *{
     background-color: rgb(251, 24, 24);
-    padding: 1rem;
+}
+
+.msg_notify *{
+    background-color: rgb(31, 53, 246);
 }
 
 .nav__menu{
