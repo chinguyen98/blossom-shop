@@ -1,6 +1,16 @@
 <%- contentFor('content') %>
 <%- include('../inc/navbar') %>
 
-<div>
-    <h1 class="text-center">Cart</h1>
+<div class="m-5">
+    <h1 class="text-center mb-5">Cart</h1>
+    <div>
+        <% if(carts.length == 0){ %>
+            <div class="text-center">
+                <h3>Your cart is empty!</h3>
+                <a href="/flowers" class="btn btn-primary">Back to flowers page!</a>
+            </div>
+        <% }else{ %>
+            <h1>Found!</h1>
+        <% } %>
+    </div>
 </div>
