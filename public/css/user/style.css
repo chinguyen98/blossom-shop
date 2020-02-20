@@ -130,3 +130,8 @@ nav ul li a:hover{
 .nav__icon span:hover{
     color: lawngreen;
 }
+
+.nav-item{
+    width: 2rem;
+    height: 2rem;
+}

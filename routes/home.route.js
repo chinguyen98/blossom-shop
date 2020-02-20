@@ -7,4 +7,6 @@ route.get('/', homeController.renderHomePage);
 
 route.get('/carts', auth.ensureUserAuthenticated, homeController.renderCartPage);
 
+route.get('/flowers/:id', homeController.renderFlowerDetailPage);
+
 module.exports = route;

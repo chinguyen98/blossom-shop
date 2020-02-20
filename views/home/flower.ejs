@@ -1,0 +1,22 @@
+<%- contentFor('content') %>
+<%- include('../inc/navbar') %>
+
+<div class="m-5">
+    <% if(user){ %>
+        <%- user.name %>
+    <% } %>
+    <h1 class="text-center"><%- flower.name %></h1>
+    <div class="container p-1 d-flex align-items-center ">
+        <img src="/images/flowers/<%- flower.image %>" alt="">
+        <div class="ml-5">
+            <h1 class="text-danger"><%- flower.price %> $</h1>
+            <label for="quantity">Quantity</label>
+            <div class="d-flex align-items-center">
+                <input type="text" name="quantity" id="quantity" value="1">
+                <button class="btn btn-success btn-addToCart ml-4">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/addToCart.js"></script>
