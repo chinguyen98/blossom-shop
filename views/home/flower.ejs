@@ -7,6 +7,8 @@
 </div>
 <% } %>
 
+<div class="msg_success"></div>
+
 <div class="m-5">
     <h1 class="text-center"><%- flower.name %></h1>
     <div class="container p-1 d-flex align-items-center ">
@@ -35,4 +37,6 @@
     </div>
 </div>
 
+<% if(user){ %>
 <script src="/js/addToCart.js"></script>
+<% } %>
