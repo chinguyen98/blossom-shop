@@ -9,6 +9,8 @@ route.get('/login', auth.redirectIfUserAuthenticated, userController.renderUserL
 
 route.get('/register', auth.redirectIfUserAuthenticated, userController.renderUserRegisterPage);
 
+route.get('/logout', userController.logout);
+
 route.post('/register', userController.registerUser);
 
 route.post('/login', auth.userAuthentication);

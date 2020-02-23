@@ -40,3 +40,8 @@ module.exports.cacheFlowerPath = function (req, res, next) {
     req.flash('msg-notify', 'Please login before order!');
     next();
 }
+
+module.exports.logout = function (req, res, next) {
+    req.logout();
+    res.redirect('/');
+}

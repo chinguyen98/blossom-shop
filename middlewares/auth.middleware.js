@@ -17,7 +17,6 @@ module.exports.adminAuthentication = passport.authenticate('admin', {
 module.exports.userAuthentication = function (req, res, next) {
     passport.authenticate('user', function (err, user, info) {
         let flowerPath = req.body.flowerPath;
-        console.log(flowerPath);
         if (err) throw err;
         if (!user) {
             res.redirect('/users/login');
