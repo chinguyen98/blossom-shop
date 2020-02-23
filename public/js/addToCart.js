@@ -16,6 +16,7 @@ const addToCart = async () => {
     })
     await response.json().then(data => {
         document.querySelector('.msg_success').innerHTML = `<h2>Order successfully!</h2>`;
+        console.log(data);
         window.scrollTo(0, 0);
     });
 }
