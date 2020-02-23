@@ -13,4 +13,6 @@ route.post('/register', userController.registerUser);
 
 route.post('/login', auth.userAuthentication);
 
+route.post('/carts', userController.cacheFlowerPath, userController.renderUserLoginPage, auth.userAuthentication);
+
 module.exports = route;

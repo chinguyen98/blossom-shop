@@ -1,20 +1,36 @@
 <%- contentFor('content') %>
 <%- include('../inc/navbar') %>
 
+<% if (msg_success != '') { %>
+<div class="msg_success">
+    <h2><%- msg_success %></h2>
+</div>
+<% } %>
+
 <div class="m-5">
-    <% if(user){ %>
-        <%- user.name %>
-    <% } %>
     <h1 class="text-center"><%- flower.name %></h1>
     <div class="container p-1 d-flex align-items-center ">
         <img src="/images/flowers/<%- flower.image %>" alt="">
         <div class="ml-5">
             <h1 class="text-danger"><%- flower.price %> $</h1>
             <label for="quantity">Quantity</label>
+            <% if(user){ %>
             <div class="d-flex align-items-center">
                 <input type="text" name="quantity" id="quantity" value="1">
+                <input type="hidden" name="flowerId" value="<%- flower.id %>">
+                <input type="hidden" name="userId" value="<%- user.id %>">
                 <button class="btn btn-success btn-addToCart ml-4">Add to cart</button>
             </div>
+            <% }else{ %>
+            <form action="/users/carts" id="carts" method="post" style="width: 2rem;" class="d-flex align-items-center">
+            </form>
+            <div class="d-flex align-items-center">
+                <input form="carts" type="text" name="quantity" id="quantity" value="1">
+                <input form="carts" type="hidden" name="flowerId" value="<%- flower.id %>">
+                <input form="carts" type="hidden" name="flowerPath" value="/flowers/<%- flower.id %>">
+                <input form="carts" class="btn btn-success btn-addToCart ml-4" type="submit" value="Add to cart">
+            </div>
+            <% } %>
         </div>
     </div>
 </div>

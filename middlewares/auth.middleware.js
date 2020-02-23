@@ -14,12 +14,26 @@ module.exports.adminAuthentication = passport.authenticate('admin', {
     successFlash: 'Login successfully!',
 });
 
-module.exports.userAuthentication = passport.authenticate('user', {
-    successRedirect: '/carts',
-    failureRedirect: '/users/login',
-    failureFlash: 'Incorrect email or password!',
-    successFlash: 'Login successfully!',
-});
+module.exports.userAuthentication = function (req, res, next) {
+    passport.authenticate('user', function (err, user, info) {
+        let flowerPath = req.body.flowerPath;
+        console.log(flowerPath);
+        if (err) throw err;
+        if (!user) {
+            res.redirect('/users/login');
+        }
+        req.login(user, function (err) {
+            if (err) throw err;
+            req.flash('msg-success', 'Login successfully!');
+            if (flowerPath == '') {
+                return res.redirect('/users');
+            }
+            else {
+                return res.redirect(flowerPath);
+            }
+        });
+    })(req, res, next);
+}
 
 passport.use('user', new localStrategy({ usernameField: 'email' }, (email, password, done) => {
     //Match Admin

@@ -5,7 +5,7 @@ module.exports.renderUserPage = function (req, res, next) {
 }
 
 module.exports.renderUserLoginPage = function (req, res, next) {
-    res.render('user/login', { 'title': 'Login' });
+    res.render('user/login', { 'title': 'Login', 'flowerPath': req.body.flowerPath || '' });
 }
 
 module.exports.renderUserRegisterPage = function (req, res, next) {
@@ -33,4 +33,10 @@ module.exports.registerUser = function (req, res, next) {
             res.redirect('/users/login');
         }
     });
+}
+
+module.exports.cacheFlowerPath = function (req, res, next) {
+    res.locals.flowerPath = req.body.flowerPath;
+    req.flash('msg-notify', 'Please login before order!');
+    next();
 }
