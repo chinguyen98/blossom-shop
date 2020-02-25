@@ -5,12 +5,39 @@
     <h1 class="text-center mb-5">Cart</h1>
     <div>
         <% if(carts.length == 0){ %>
-            <div class="text-center">
-                <h3>Your cart is empty!</h3>
-                <a href="/flowers" class="btn btn-primary">Back to flowers page!</a>
-            </div>
+        <div class="text-center">
+            <h3>Your cart is empty!</h3>
+            <a href="/flowers" class="btn btn-primary">Back to flowers page!</a>
+        </div>
         <% }else{ %>
-            <h1>Found!</h1>
+        <table border="1px" class="cartTable">
+            <tr>
+                <th></th>
+                <th>
+                    <h3>Name</h3>
+                </th>
+                <th>
+                    <h3>Price</h3>
+                </th>
+                <th>
+                    <h3>Quantity</h3>
+                </th>
+            </tr>
+            <% carts.forEach(cart=>{ %>
+            <tr>
+                <td><img src="/images/flowers/<%- cart.flowerImage %>" alt=""></td>
+                <td>
+                    <h3><%- cart.flowerName %></h3>
+                </td>
+                <td>
+                    <h3><%- cart.flowerPrice %> $</h3>
+                </td>
+                <td>
+                    <h3><%- cart.quantity %></h3>
+                </td>
+            </tr>
+            <% }) %>
+        </table>
         <% } %>
     </div>
 </div>

@@ -9,11 +9,22 @@ module.exports.renderHomePage = function (req, res, next) {
     });
 }
 
-module.exports.renderCartPage = function (req, res, next) {
-    Cart.find({ userId: req.user.id }, (err, carts) => {
-        if (err) throw err;
-        res.render('home/cart', { 'title': 'Cart', 'carts': carts });
-    });
+module.exports.renderCartPage = async function (req, res, next) {
+    let carts = null;
+    let flowers = null;
+
+    await Cart.find({ 'userId': req.user.id }).exec().then(data => carts = data);
+
+    await Promise.all(carts.map(cart => {
+        return Flower.findById(cart.flowerId).exec();
+    })).then(data => { flowers = data });
+
+    let detailCart = [];
+    carts.forEach((cart, index) => {
+        detailCart.push({ 'flowerName': flowers[index].name, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity });
+    })
+
+    res.render('home/cart', { 'title': 'Cart', 'carts': detailCart });
 }
 
 module.exports.renderFlowerDetailPage = function (req, res, next) {

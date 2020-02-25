@@ -68,6 +68,15 @@ nav ul li a:hover{
     border-radius: 20%;
 }
 
+.cartTable{
+    border: 2px solid black;
+}
+
+.cartTable img{
+    width: 10rem;
+    height: 10rem;
+}
+
 .flowerImage{
     width: 15rem;
     height: 15rem;
