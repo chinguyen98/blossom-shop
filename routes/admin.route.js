@@ -9,7 +9,7 @@ route.get('/', auth.ensureAdminAuthenticated, adminController.renderAdminHomePag
 
 route.get('/login', auth.redirectIfAdminAuthenticated, adminController.renderAdminLoginPage);
 
-route.get('/register', auth.ensureAdminAuthenticated, adminController.renderAdminRegisterPage);
+route.get('/register', adminController.renderAdminRegisterPage);
 
 route.get('/manage/blossoms', auth.ensureAdminAuthenticated, adminController.renderAdminManageBlossomsPage);
 
