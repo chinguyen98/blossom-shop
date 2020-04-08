@@ -2,7 +2,7 @@ const btnAddToCart = document.querySelector('.btn-addToCart');
 const quantityInput = document.querySelector('input[name="quantity"]');
 const flowerIdInput = document.querySelector('input[name="flowerId"]')
 const userIdInput = document.querySelector('input[name="userId"]');
-const url = 'http://localhost:8080/api/carts';
+const url = '/api/carts';
 
 const addToCart = async () => {
     const data = { 'userId': userIdInput.value, 'flowerId': flowerIdInput.value, 'quantity': quantityInput.value };
