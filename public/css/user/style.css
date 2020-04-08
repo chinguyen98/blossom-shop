@@ -68,6 +68,18 @@ nav ul li a:hover{
     border-radius: 20%;
 }
 
+.cartQuantity{
+    position: relative;
+}
+
+.cartQuantity p{
+    position: absolute;
+    right: 0;
+    top: 0.5em;
+    color: red;
+    font-weight: bold;
+}
+
 .cartTable{
     border: 2px solid black;
 }

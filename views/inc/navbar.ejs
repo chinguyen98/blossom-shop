@@ -11,7 +11,13 @@
     </ul>
     <div class="nav__icon">
         <span style="font-size: 1.5rem;"><img class="nav-item" src="/images/search-icon.png" alt=""></span>
-        <a href="/users"><span style="font-size: 1.5rem;"><img class="nav-item" src="/images/customer-icon.png" alt=""></span></a>
-        <a href="/carts"><span style="font-size: 1.5rem;"><img class="nav-item" src="/images/cart-icon.png" alt=""></span></a>
+        <a href="/users"><span style="font-size: 1.5rem;"><img class="nav-item" src="/images/customer-icon.png"
+                    alt=""></span></a>
+        <span class="cartQuantity">
+            <a href="/carts">
+                <span style="font-size: 1.5rem;"><img class="nav-item" src="/images/cart-icon.png" alt=""></span>
+            </a>
+            <p><%- cartQuantity %></p>
+        </span>
     </div>
 </nav>

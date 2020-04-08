@@ -2,6 +2,7 @@ const btnAddToCart = document.querySelector('.btn-addToCart');
 const quantityInput = document.querySelector('input[name="quantity"]');
 const flowerIdInput = document.querySelector('input[name="flowerId"]')
 const userIdInput = document.querySelector('input[name="userId"]');
+const cartQuantity = document.querySelector('.cartQuantity p');
 const url = '/api/carts';
 
 const addToCart = async () => {
@@ -16,7 +17,7 @@ const addToCart = async () => {
     })
     await response.json().then(data => {
         document.querySelector('.msg_success').innerHTML = `<h2>Order successfully!</h2>`;
-        console.log(data);
+        cartQuantity.innerHTML = data.cartQuantity;
         window.scrollTo(0, 0);
     });
 }

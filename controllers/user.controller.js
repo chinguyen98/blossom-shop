@@ -1,15 +1,15 @@
 const User = require('../models/user.model');
 
 module.exports.renderUserPage = function (req, res, next) {
-    res.render('user/index', { 'title': 'Hello' });
+    res.render('user/index', { 'title': 'Hello', 'cartQuantity': res.locals.cartQuantity });
 }
 
 module.exports.renderUserLoginPage = function (req, res, next) {
-    res.render('user/login', { 'title': 'Login', 'flowerPath': req.body.flowerPath || '' });
+    res.render('user/login', { 'title': 'Login', 'flowerPath': req.body.flowerPath || '', 'cartQuantity': res.locals.cartQuantity });
 }
 
 module.exports.renderUserRegisterPage = function (req, res, next) {
-    res.render('user/register', { 'title': 'Register' });
+    res.render('user/register', { 'title': 'Register', 'cartQuantity': res.locals.cartQuantity });
 }
 
 module.exports.registerUser = function (req, res, next) {

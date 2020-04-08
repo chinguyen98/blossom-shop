@@ -5,7 +5,7 @@ const Cart = require('../models/cart.model');
 module.exports.renderHomePage = function (req, res, next) {
     Flower.find({}, (err, flowers) => {
         if (err) throw err;
-        res.render('home/index', { 'title': 'Blossom Shop', 'flowers': flowers });
+        res.render('home/index', { 'title': 'Blossom Shop', 'flowers': flowers, 'cartQuantity': res.locals.cartQuantity });
     });
 }
 
@@ -21,7 +21,7 @@ module.exports.renderCartPage = async function (req, res, next) {
 
     let detailCart = [];
     carts.forEach((cart, index) => {
-        detailCart.push({ 'flowerName': flowers[index].name, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity });
+        detailCart.push({ 'flowerName': flowers[index].name, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity, 'cartQuantity': res.locals.cartQuantity });
     })
 
     res.render('home/cart', { 'title': 'Cart', 'carts': detailCart });
@@ -29,6 +29,6 @@ module.exports.renderCartPage = async function (req, res, next) {
 
 module.exports.renderFlowerDetailPage = function (req, res, next) {
     Flower.findById(req.params.id, (err, flower) => {
-        res.render('home/flower', { 'title': 'Flower', 'flower': flower });
+        res.render('home/flower', { 'title': 'Flower', 'flower': flower, 'cartQuantity': res.locals.cartQuantity });
     });
 }

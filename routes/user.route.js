@@ -2,12 +2,13 @@ const route = require('express').Router();
 
 const userController = require('../controllers/user.controller');
 const auth = require('../middlewares/auth.middleware');
+const getCartQuantityMiddleware = require('../middlewares/cartQuantity.middleware').getCartQuantity;
 
-route.get('/', auth.ensureUserAuthenticated, userController.renderUserPage);
+route.get('/', getCartQuantityMiddleware, auth.ensureUserAuthenticated, userController.renderUserPage);
 
-route.get('/login', auth.redirectIfUserAuthenticated, userController.renderUserLoginPage);
+route.get('/login', getCartQuantityMiddleware, auth.redirectIfUserAuthenticated, userController.renderUserLoginPage);
 
-route.get('/register', auth.redirectIfUserAuthenticated, userController.renderUserRegisterPage);
+route.get('/register', getCartQuantityMiddleware, auth.redirectIfUserAuthenticated, userController.renderUserRegisterPage);
 
 route.get('/logout', userController.logout);
 
