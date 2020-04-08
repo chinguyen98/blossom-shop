@@ -2,28 +2,33 @@
 <%- include('../inc/navbar') %>
 
 <div class="m-5">
-    <h1 class="text-left mb-5">Cart</h1>
     <div class="container">
+        <h1 class="text-left mb-5">Cart</h1>
         <% if(carts.length == 0){ %>
         <div class="text-center">
             <h3>Your cart is empty!</h3>
             <a href="/flowers" class="btn btn-primary">Back to flowers page!</a>
         </div>
         <% }else{ %>
+        <div class="text-right"><button class="saveCartBtn btn btn-dark mb-2" disabled>Save your cart</button></div>
         <% carts.forEach(cart=>{ %>
-        <div class="d-flex flex-row align-items-center justify-content-between cartContainer p-2 mb-3">
+        <div class="d-flex flex-row align-items-center justify-content-around cartContainer p-2 mb-3">
             <div style="width: 40%;">
                 <img class="flowerImage" src="/images/flowers/<%- cart.flowerImage %>" alt="">
                 <span class="cartContainer__name ml-5"><%- cart.flowerName %></span>
             </div>
-            <input type="number" min="0" value="<%- cart.quantity %>">
-                <span class="cartContainer__name"><%- cart.flowerPrice %> $</span>
+            <input type="number" min="1" value="<%- cart.quantity %>" data-price="<%- cart.flowerPrice %>">
+            <span class="cartContainer__name"><%- cart.flowerPrice %> $</span>
             <div>
-                <button class="btn btn-primary">Save</button>
                 <button class="btn btn-danger">Delete</button>
             </div>
         </div>
         <% }) %>
+        <h1 class="text-right">Total Price: <span class="cartToTalPrice"><%- totalPrice %></span> $</h1>
         <% } %>
     </div>
 </div>
+
+<% if(user){ %>
+<script src="/js/updateCart.js"></script>
+<% } %>
