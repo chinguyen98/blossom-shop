@@ -68,6 +68,27 @@ nav ul li a:hover{
     border-radius: 20%;
 }
 
+.cartContainer{
+    box-shadow: 0px 1px 3px black;
+}
+
+.cartContainer input[type="number"]{
+    color: rebeccapurple;
+    border: none;
+    box-shadow: 0px 1px 1px black;
+    outline: none;
+    width: 3rem;
+}
+
+.cartContainer img{
+    width: 5em;
+    height: 5em;
+}
+
+.cartContainer__name{
+    margin-left: 1em;
+}
+
 .cartQuantity{
     position: relative;
 }
@@ -78,15 +99,6 @@ nav ul li a:hover{
     top: 0.5em;
     color: red;
     font-weight: bold;
-}
-
-.cartTable{
-    border: 2px solid black;
-}
-
-.cartTable img{
-    width: 10rem;
-    height: 10rem;
 }
 
 .flowerImage{

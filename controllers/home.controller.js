@@ -21,10 +21,10 @@ module.exports.renderCartPage = async function (req, res, next) {
 
     let detailCart = [];
     carts.forEach((cart, index) => {
-        detailCart.push({ 'flowerName': flowers[index].name, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity, 'cartQuantity': res.locals.cartQuantity });
+        detailCart.push({ 'flowerName': flowers[index].name, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity });
     })
 
-    res.render('home/cart', { 'title': 'Cart', 'carts': detailCart });
+    res.render('home/cart', { 'title': 'Cart', 'carts': detailCart, 'cartQuantity': res.locals.cartQuantity });
 }
 
 module.exports.renderFlowerDetailPage = function (req, res, next) {
