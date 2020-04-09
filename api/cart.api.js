@@ -29,7 +29,13 @@ const updateCart = async function (req, res, next) {
     res.status(200).json({ 'message': 'Saved' });
 }
 
+const deleteCart = async function (req, res, next) {
+    await Cart.deleteOne({ 'flowerId': req.params.id });
+    res.status(200).json({ 'message': 'Deleted' });
+}
+
 route.post('/', storeCart);
 route.put('/', updateCart);
+route.delete('/:id', deleteCart);
 
 module.exports = route;
