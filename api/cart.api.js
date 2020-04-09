@@ -21,6 +21,15 @@ const storeCart = async function (req, res, next) {
     });
 }
 
+const updateCart = async function (req, res, next) {
+    const lstData = req.body;
+    await Promise.all(lstData.map(data => {
+        return Cart.updateOne({ 'flowerId': data.flowerId }, { 'quantity': data.quantity });
+    }));
+    res.status(200).json({ 'message': 'Saved' });
+}
+
 route.post('/', storeCart);
+route.put('/', updateCart);
 
 module.exports = route;

@@ -1,6 +1,8 @@
 <%- contentFor('content') %>
 <%- include('../inc/navbar') %>
 
+<div class="msg_success"></div>
+
 <div class="m-5">
     <div class="container">
         <h1 class="text-left mb-5">Cart</h1>
@@ -17,7 +19,8 @@
                 <img class="flowerImage" src="/images/flowers/<%- cart.flowerImage %>" alt="">
                 <span class="cartContainer__name ml-5"><%- cart.flowerName %></span>
             </div>
-            <input type="number" min="1" value="<%- cart.quantity %>" data-price="<%- cart.flowerPrice %>">
+            <input type="number" min="1" value="<%- cart.quantity %>" data-price="<%- cart.flowerPrice %>"
+                data-id="<%- cart.flowerId %>">
             <span class="cartContainer__name"><%- cart.flowerPrice %> $</span>
             <div>
                 <button class="btn btn-danger">Delete</button>

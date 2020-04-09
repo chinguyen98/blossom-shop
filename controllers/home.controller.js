@@ -22,7 +22,7 @@ module.exports.renderCartPage = async function (req, res, next) {
 
     let detailCart = [];
     carts.forEach((cart, index) => {
-        detailCart.push({ 'flowerName': flowers[index].name, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity });
+        detailCart.push({ 'flowerName': flowers[index].name, 'flowerId': flowers[index].id, 'flowerImage': flowers[index].image, 'flowerPrice': flowers[index].price, 'quantity': cart.quantity });
         totalPrice += flowers[index].price * cart.quantity;
     })
 
