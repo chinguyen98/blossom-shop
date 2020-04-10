@@ -63,12 +63,16 @@ app.set('layout', './layouts/app.layout.ejs');
 const indexRoute = require('./routes/home.route.js');
 const adminRoute = require('./routes/admin.route.js');
 const userRoute = require('./routes/user.route.js');
+const orderRoute = require('./routes/order.route');
 const apiCartRoute = require('./api/cart.api');
 
 /* Routers */
 app.use('/', indexRoute);
 app.use('/users', userRoute);
 app.use('/admins', adminRoute);
+app.use('/carts/', orderRoute);
+
+/* API */
 app.use('/api/carts', apiCartRoute);
 
 app.listen(PORT, () => console.log(`The server is running at PORT ${PORT}!...`));

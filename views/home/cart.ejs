@@ -35,7 +35,12 @@
             </div>
             <% }) %>
         </div>
-        <h1 class="cartToTalPriceZone text-right">Total Price: <span class="cartToTalPrice"><%- totalPrice %></span> $</h1>
+        <h1 class="cartToTalPriceZone text-right">Total Price: <span class="cartToTalPrice"><%- totalPrice %></span> $
+        </h1>
+        <div class="text-right"><input class="btn btn-success" type="submit" form="cartForm" value="Order now!"></div>
+        <form id="cartForm" action="/carts" method="post" onsubmit="return appendCart()">
+            <input type="hidden" name="cart" value="">
+        </form>
         <% } %>
     </div>
 </div>

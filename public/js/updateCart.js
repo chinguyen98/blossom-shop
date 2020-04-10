@@ -61,6 +61,14 @@ const deleteCart = async (e) => {
     window.scrollTo(0, 0);
 }
 
+const appendCart = (e) => {
+    const data = Array.from(document.querySelectorAll('.cartContainer input[type="number"]')).map(quantityInput => {
+        return { 'flowerId': quantityInput.dataset.id, 'quantity': quantityInput.value }
+    });
+    document.querySelector('input[name="cart"]').value = JSON.stringify(data);
+    return true;
+}
+
 quantityInputs.forEach(quantityInput => {
     quantityInput.addEventListener('change', () => {
         activeSaveButton();
